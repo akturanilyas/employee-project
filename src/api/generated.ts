@@ -15,85 +15,77 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-export type Country = {
-  __typename?: 'Country';
-  currency?: Maybe<Scalars['String']['output']>;
-  emoji?: Maybe<Scalars['String']['output']>;
-  languages?: Maybe<Array<Maybe<Language>>>;
-  name?: Maybe<Scalars['String']['output']>;
-  native?: Maybe<Scalars['String']['output']>;
-};
-
 export type Employee = {
   __typename?: 'Employee';
-  id?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  star?: Maybe<Scalars['Int']['output']>;
-};
-
-export type Language = {
-  __typename?: 'Language';
-  code?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
+  email: Scalars['String']['output'];
+  first_name: Scalars['String']['output'];
+  id: Scalars['Int']['output'];
+  image: Scalars['String']['output'];
+  job: Scalars['String']['output'];
+  last_name: Scalars['String']['output'];
+  star: Scalars['Int']['output'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createEmployee?: Maybe<Employee>;
+  increaseEmployeeStar?: Maybe<Employee>;
 };
 
 
-export type MutationCreateEmployeeArgs = {
-  id: Scalars['String']['input'];
-  name: Scalars['String']['input'];
-  star: Scalars['Int']['input'];
+export type MutationIncreaseEmployeeStarArgs = {
+  id: Scalars['Int']['input'];
 };
 
 export type Query = {
   __typename?: 'Query';
-  country?: Maybe<Country>;
   employee?: Maybe<Employee>;
+  employees?: Maybe<Array<Employee>>;
 };
 
-export type CountryQueryVariables = Exact<{ [key: string]: never; }>;
+
+export type QueryEmployeeArgs = {
+  id: Scalars['Int']['input'];
+};
+
+export type EmployeesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CountryQuery = { __typename?: 'Query', country?: { __typename?: 'Country', currency?: string | null } | null };
+export type EmployeesQuery = { __typename?: 'Query', employees?: Array<{ __typename?: 'Employee', id: number, star: number }> | null };
 
-export type EmployeeQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type EmployeeQuery = { __typename?: 'Query', employee?: { __typename?: 'Employee', id?: string | null, name?: string | null, star?: number | null } | null };
-
-export type MutationTestMutationVariables = Exact<{
-  ep: Scalars['String']['input'];
-  review: Scalars['String']['input'];
-  star: Scalars['Int']['input'];
+export type EmployeeQueryVariables = Exact<{
+  id: Scalars['Int']['input'];
 }>;
 
 
-export type MutationTestMutation = { __typename?: 'Mutation', createEmployee?: { __typename?: 'Employee', star?: number | null, id?: string | null } | null };
+export type EmployeeQuery = { __typename?: 'Query', employee?: { __typename?: 'Employee', id: number, star: number } | null };
+
+export type IncreaseEmployeeStarMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
 
 
-export const CountryDocument = `
-    query Country {
-  country {
-    currency
-  }
-}
-    `;
-export const EmployeeDocument = `
-    query Employee {
-  employee {
+export type IncreaseEmployeeStarMutation = { __typename?: 'Mutation', increaseEmployeeStar?: { __typename?: 'Employee', star: number, id: number } | null };
+
+
+export const EmployeesDocument = `
+    query employees {
+  employees {
     id
-    name
     star
   }
 }
     `;
-export const MutationTestDocument = `
-    mutation MutationTest($ep: String!, $review: String!, $star: Int!) {
-  createEmployee(name: $ep, id: $review, star: $star) {
+export const EmployeeDocument = `
+    query employee($id: Int!) {
+  employee(id: $id) {
+    id
+    star
+  }
+}
+    `;
+export const IncreaseEmployeeStarDocument = `
+    mutation increaseEmployeeStar($id: Int!) {
+  increaseEmployeeStar(id: $id) {
     star
     id
   }
@@ -102,18 +94,18 @@ export const MutationTestDocument = `
 
 const injectedRtkApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    Country: build.query<CountryQuery, CountryQueryVariables | void>({
-      query: (variables) => ({ document: CountryDocument, variables })
+    employees: build.query<EmployeesQuery, EmployeesQueryVariables | void>({
+      query: (variables) => ({ document: EmployeesDocument, variables })
     }),
-    Employee: build.query<EmployeeQuery, EmployeeQueryVariables | void>({
+    employee: build.query<EmployeeQuery, EmployeeQueryVariables>({
       query: (variables) => ({ document: EmployeeDocument, variables })
     }),
-    MutationTest: build.mutation<MutationTestMutation, MutationTestMutationVariables>({
-      query: (variables) => ({ document: MutationTestDocument, variables })
+    increaseEmployeeStar: build.mutation<IncreaseEmployeeStarMutation, IncreaseEmployeeStarMutationVariables>({
+      query: (variables) => ({ document: IncreaseEmployeeStarDocument, variables })
     }),
   }),
 });
 
 export { injectedRtkApi as api };
-export const { useCountryQuery, useLazyCountryQuery, useEmployeeQuery, useLazyEmployeeQuery, useMutationTestMutation } = injectedRtkApi;
+export const { useEmployeesQuery, useLazyEmployeesQuery, useEmployeeQuery, useLazyEmployeeQuery, useIncreaseEmployeeStarMutation } = injectedRtkApi;
 

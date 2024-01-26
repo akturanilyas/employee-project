@@ -28,7 +28,6 @@ export function MockProvider({
   if (!mockingEnabled) {
     return null;
   }
-  console.log(mockingEnabled);
 
   return <>{children}</>;
 }

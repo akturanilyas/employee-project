@@ -8,12 +8,15 @@
     "start": "next start",
     "lint": "eslint . --ext .js,.ts,.tsx",
     "lint:fix": "cd \"./src/\" && eslint . --fix --ext .ts,.tsx,.js && cd ..",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
     "tsc": "tsc",
     "tsc:watch": "tsc --watch",
-    "prepare": "husky install",
+    "commit": "commit",
+    "precommit": "lint-staged && npm run format && npm run lint:fix && npm run lint && npm run tsc",
     "codegen": "graphql-codegen --config codegen.ts",
-    "codegen:watch": "npm run codegen -- --watch",
-    "postinstall": "husky install"
+    "codegen:watch": "yarn run codegen -- --watch",
+    "postinstall": "husky install",
+    "prepare": "husky"
   },
   "dependencies": {
     "@reduxjs/toolkit": "2.1.0",
@@ -48,11 +51,12 @@
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-unused-imports": "3.0.0",
-    "husky": "8.0.3",
+    "husky": "9.0.6",
     "lint-staged": "15.2.0",
     "msw": "2.1.4",
     "prettier": "3.2.4",
-    "redux-logger": "3.0.6"
+    "redux-logger": "3.0.6",
+    "tailwind-merge": "2.2.1"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json}": [
@@ -64,5 +68,8 @@
     "workerDirectory": [
       "public"
     ]
+  },
+  "resolutions": {
+    "string-width": "4.2.3"
   }
 }

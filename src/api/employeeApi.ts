@@ -2,18 +2,20 @@ import { api as generatedApi } from '@/api/generated';
 
 export const employeeApi = generatedApi.enhanceEndpoints({
   endpoints: {
-    MutationTest: {
+    increaseEmployeeStar: {
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         queryFulfilled.then((value) => {
-          dispatch(
-            employeeApi.util.updateQueryData('Employee', undefined, (data) => ({
-              employee: { ...data.employee, id: 'idont now', star: 4 },
+          /*
+          Dispatch(
+            employeeApi.util.updateQueryData('Employees', undefined, (data: EmployeesQuery) => ({
+              employees: { ...data.employees, star: 4 },
             })),
-          );
+          )
+           */
         });
       },
     },
   },
 });
 
-export const { useEmployeeQuery, useMutationTestMutation } = employeeApi;
+export const { useIncreaseEmployeeStarMutation, useEmployeesQuery } = employeeApi;

@@ -1,0 +1,20 @@
+query employees {
+    employees {
+        id
+        star
+    }
+}
+
+query employee($id: Int!) {
+    employee(id: $id) {
+        id
+        star
+    }
+}
+
+mutation increaseEmployeeStar($id:Int!) {
+    increaseEmployeeStar(id:$id ) {
+        star
+        id
+    }
+}
