@@ -1,0 +1,13 @@
+type Query {
+    employee: Employee
+}
+
+type Mutation {
+    createEmployee(id: String!, name: String!, star: Int!): Employee
+}
+
+type Employee {
+    id: String
+    name: String
+    star: Int
+}
