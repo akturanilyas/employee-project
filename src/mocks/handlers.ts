@@ -10,7 +10,7 @@ const employeesMock = [
     gender: 'Male',
     image: 'https://robohash.org/sedetipsa.png?size=50x50&set=set1',
     job: 'Human Resources Assistant II',
-    star: 30,
+    star: 9,
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const employeesMock = [
     gender: 'Male',
     image: 'https://robohash.org/quiautamet.png?size=50x50&set=set1',
     job: 'Assistant Manager',
-    star: 57,
+    star: 2,
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const employeesMock = [
     gender: 'Male',
     image: 'https://robohash.org/teneturvoluptasaperiam.png?size=50x50&set=set1',
     job: 'Assistant Professor',
-    star: 24,
+    star: 3,
   },
   {
     id: 4,
@@ -40,7 +40,7 @@ const employeesMock = [
     gender: 'Male',
     image: 'https://robohash.org/esseautvoluptas.png?size=50x50&set=set1',
     job: 'Safety Technician IV',
-    star: 7,
+    star: 4,
   },
   {
     id: 5,
@@ -50,7 +50,7 @@ const employeesMock = [
     gender: 'Male',
     image: 'https://robohash.org/nonsintomnis.png?size=50x50&set=set1',
     job: 'VP Accounting',
-    star: 13,
+    star: 5,
   },
   {
     id: 6,
@@ -60,7 +60,7 @@ const employeesMock = [
     gender: 'Female',
     image: 'https://robohash.org/sapienteliberoeligendi.png?size=50x50&set=set1',
     job: 'Director of Sales',
-    star: 62,
+    star: 6,
   },
   {
     id: 7,
@@ -70,7 +70,7 @@ const employeesMock = [
     gender: 'Female',
     image: 'https://robohash.org/utevenietest.png?size=50x50&set=set1',
     job: 'Cost Accountant',
-    star: 48,
+    star: 16,
   },
   {
     id: 8,
@@ -80,7 +80,7 @@ const employeesMock = [
     gender: 'Female',
     image: 'https://robohash.org/veniamenimquam.png?size=50x50&set=set1',
     job: 'Quality Control Specialist',
-    star: 65,
+    star: 8,
   },
   {
     id: 9,
@@ -90,7 +90,7 @@ const employeesMock = [
     gender: 'Bigender',
     image: 'https://robohash.org/nemonesciuntvel.png?size=50x50&set=set1',
     job: 'Sales Associate',
-    star: 19,
+    star: 9,
   },
   {
     id: 10,
@@ -100,7 +100,7 @@ const employeesMock = [
     gender: 'Bigender',
     image: 'https://robohash.org/doloribusnullavoluptates.png?size=50x50&set=set1',
     job: 'Account Representative III',
-    star: 81,
+    star: 10,
   },
   {
     id: 11,
@@ -110,7 +110,7 @@ const employeesMock = [
     gender: 'Female',
     image: 'https://robohash.org/veronondoloremque.png?size=50x50&set=set1',
     job: 'Senior Quality Engineer',
-    star: 99,
+    star: 11,
   },
   {
     id: 12,
@@ -120,7 +120,7 @@ const employeesMock = [
     gender: 'Female',
     image: 'https://robohash.org/adlaudantiumvoluptatem.png?size=50x50&set=set1',
     job: 'Sales Representative',
-    star: 85,
+    star: 12,
   },
   {
     id: 13,
@@ -130,7 +130,7 @@ const employeesMock = [
     gender: 'Male',
     image: 'https://robohash.org/doloresomniseum.png?size=50x50&set=set1',
     job: 'Safety Technician I',
-    star: 46,
+    star: 13,
   },
   {
     id: 14,
@@ -140,7 +140,7 @@ const employeesMock = [
     gender: 'Female',
     image: 'https://robohash.org/aliquidvelitblanditiis.png?size=50x50&set=set1',
     job: 'Human Resources Manager',
-    star: 46,
+    star: 14,
   },
   {
     id: 15,
@@ -150,7 +150,7 @@ const employeesMock = [
     gender: 'Male',
     image: 'https://robohash.org/natusipsaaccusantium.png?size=50x50&set=set1',
     job: 'Staff Accountant II',
-    star: 24,
+    star: 15,
   },
 ];
 
@@ -168,7 +168,7 @@ export const handlers = [
           gender: 'Male',
           image: 'https://robohash.org/sedetipsa.png?size=50x50&set=set1',
           job: 'Human Resources Assistant II',
-          star: 30,
+          star: 1,
         },
       },
     }),
@@ -183,9 +183,11 @@ export const handlers = [
   graphql.query<EmployeeQuery>('employee', ({ variables }) => {
     const employeeId = variables.id;
 
+    const employee: Employee = employeesMock.find((employee) => employee.id === employeeId)!;
+
     return HttpResponse.json({
       data: {
-        employee: employeesMock.find((employee) => employee.id === employeeId),
+        employee,
       },
     });
   }),

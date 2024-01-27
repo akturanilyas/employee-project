@@ -1,17 +1,15 @@
-'use client';
-
 import { FC } from 'react';
 import { EmployeeListProps } from '@/components/employee/EmployeeList.interface';
 import BaseView from '@/components/common/base-view/BaseView';
 import { List } from '@/components/common/list/List';
-import { useEmployeesQuery } from '@/api/employeeApi';
 import { Employee } from '@/api/generated';
 import { BaseText } from '@/components/common/base-text/BaseText';
 import Image from 'next/image';
 import Link from 'next/link';
+import { VoteEmployeeButton } from '@/components/employee/VoteEmployeeButton';
 
-export const EmployeeList: FC<EmployeeListProps> = () => {
-  const { data: employees } = useEmployeesQuery();
+export const EmployeeList: FC<EmployeeListProps> = (props) => {
+  const { employees } = props;
 
   const getListItem = (item: Employee) => (
     <Link href={`/${item.id}`}>
@@ -35,13 +33,14 @@ export const EmployeeList: FC<EmployeeListProps> = () => {
           </BaseView>
         </BaseView>
         <BaseText label={item.star.toString()} />
+        <VoteEmployeeButton employeeId={item.id} />
       </BaseView>
     </Link>
   );
 
   return (
     <BaseView className={'w-full items-center p-4 overflow-y-scroll h-[calc(100vh_-_10rem)]'}>
-      <List<Employee> className={'w-full'} items={employees?.employees || []} listItemRender={getListItem} />
+      <List<Employee> className={'w-full'} items={employees} listItemRender={getListItem} />
     </BaseView>
   );
 };

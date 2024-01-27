@@ -11,6 +11,7 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
     "tsc": "tsc",
     "tsc:watch": "tsc --watch",
+    "format": "prettier --write \"./src/**/*.{ts,tsx,js,jsx,json}\"",
     "commit": "commit",
     "precommit": "lint-staged && npm run format && npm run lint:fix && npm run lint && npm run tsc",
     "codegen": "graphql-codegen --config codegen.ts",

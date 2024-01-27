@@ -3,7 +3,7 @@ import { EmployeeDetail } from '@/components/employee/EmployeeDetail';
 import { reduxStore } from '@/redux/store';
 import { employeeApi } from '@/api/employeeApi';
 
-async function getEmployee(id:number) {
+async function getEmployee(id: number) {
   const data = await reduxStore.dispatch(employeeApi.endpoints.employee.initiate({ id })).unwrap();
 
   return data;
@@ -11,8 +11,8 @@ async function getEmployee(id:number) {
 
 export default async function Home(props: {
   params: {
-    employee_id: string
-  }
+    employee_id: string;
+  };
 }) {
   const { employee } = await getEmployee(Number(props.params.employee_id));
 

@@ -7,7 +7,6 @@ export const Button: FC<ButtonProps> = (props) => {
   const { label, className, onClick } = props;
 
   const classes = twMerge(`
-    bg-blue-800 
     ${className || ''}
   `);
 
