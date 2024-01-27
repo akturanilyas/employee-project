@@ -19,11 +19,9 @@ const graphqlBaseQuery = graphqlRequestBaseQuery({
 export const baseApi = createApi({
   baseQuery: graphqlBaseQuery,
   endpoints: () => ({}),
-  tagTypes: [],
   extractRehydrationInfo(action, { reducerPath }) {
     if (isHydrateAction(action)) {
-      // @ts-ignore
-      return action.payload[reducerPath];
+      return action.payload[reducerPath as keyof typeof action.payload];
     }
   },
 });

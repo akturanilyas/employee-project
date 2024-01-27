@@ -157,22 +157,23 @@ const employeesMock = [
 export const handlers = [
   graphql.mutation<{
     increaseEmployeeStar: Employee;
-  }>('increaseEmployeeStar', () =>
-    HttpResponse.json({
+  }>('increaseEmployeeStar', ({ variables }) => {
+    const { id } = variables;
+
+    return HttpResponse.json({
       data: {
-        increaseEmployeeStar: {
-          id: 1,
-          first_name: 'Jeramie',
-          last_name: 'Noton',
-          email: 'jnoton0@twitter.com',
-          gender: 'Male',
-          image: 'https://robohash.org/sedetipsa.png?size=50x50&set=set1',
-          job: 'Human Resources Assistant II',
-          star: 1,
-        },
+        increaseEmployeeStar: employeesMock.find((employee) => {
+          if (employee.id === id) {
+            employee.star++;
+
+            return true;
+          }
+
+          return false;
+        })!,
       },
-    }),
-  ),
+    });
+  }),
   graphql.query<EmployeesQuery>('employees', () =>
     HttpResponse.json({
       data: {

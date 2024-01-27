@@ -1,9 +1,8 @@
-/* Core */
 import {
   type TypedUseSelectorHook,
   useDispatch as useReduxDispatch,
   useSelector as useReduxSelector,
-} from 'react-redux'; /* Instruments */
+} from 'react-redux';
 import { reducer } from './rootReducer';
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import { middleware } from '@/redux/middleware';

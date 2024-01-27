@@ -1,3 +1,5 @@
+'use client';
+
 import { FC } from 'react';
 import { EmployeeListProps } from '@/components/employee/EmployeeList.interface';
 import BaseView from '@/components/common/base-view/BaseView';
@@ -7,9 +9,10 @@ import { BaseText } from '@/components/common/base-text/BaseText';
 import Image from 'next/image';
 import Link from 'next/link';
 import { VoteEmployeeButton } from '@/components/employee/VoteEmployeeButton';
+import { useEmployeesQuery } from '@/api/employeeApi';
 
 export const EmployeeList: FC<EmployeeListProps> = (props) => {
-  const { employees } = props;
+  const { data: employeesData } = useEmployeesQuery();
 
   const getListItem = (item: Employee) => (
     <Link href={`/${item.id}`}>
@@ -40,7 +43,7 @@ export const EmployeeList: FC<EmployeeListProps> = (props) => {
 
   return (
     <BaseView className={'w-full items-center p-4 overflow-y-scroll h-[calc(100vh_-_10rem)]'}>
-      <List<Employee> className={'w-full'} items={employees} listItemRender={getListItem} />
+      <List<Employee> className={'w-full'} items={employeesData?.employees || []} listItemRender={getListItem} />
     </BaseView>
   );
 };
