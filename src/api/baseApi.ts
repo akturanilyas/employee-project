@@ -1,4 +1,4 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
+import { BaseQueryApi, createApi } from '@reduxjs/toolkit/query/react';
 import { graphqlRequestBaseQuery } from '@rtk-query/graphql-request-base-query';
 import { GraphQLClient } from 'graphql-request';
 import { Action, PayloadAction } from '@reduxjs/toolkit';
@@ -16,8 +16,26 @@ const graphqlBaseQuery = graphqlRequestBaseQuery({
   client,
 });
 
+export const baseQueryWithInterceptors = async (
+  {
+    document,
+    variables,
+  }: {
+    document: string;
+    variables: void | Record<string, unknown>;
+  },
+  api: BaseQueryApi,
+  extraOptions: Record<string, unknown>,
+) => {
+  const result = await graphqlBaseQuery({ document, variables }, api, extraOptions);
+
+  fetch('/api/logger', { method: 'POST', body: JSON.stringify({ document, variables }) });
+
+  return result;
+};
+
 export const baseApi = createApi({
-  baseQuery: graphqlBaseQuery,
+  baseQuery: baseQueryWithInterceptors,
   endpoints: () => ({}),
   extractRehydrationInfo(action, { reducerPath }) {
     if (isHydrateAction(action)) {
