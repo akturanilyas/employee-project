@@ -1,17 +1,12 @@
-'use client';
-
-import { useEmployeesQuery, useIncreaseEmployeeStarMutation } from '@/api/employeeApi';
-import { useEmployeeQuery } from '@/api/generated';
+import BaseView from '@/components/common/base-view/BaseView';
+import { EmployeeTitle } from '@/components/employee/EmployeeTıtle';
+import { EmployeeList } from '@/components/employee/EmployeeList';
 
 export default function Home() {
-  const { data } = useEmployeesQuery();
-
-  useEmployeeQuery({ id: 1 });
-  const [increaseEmployeeMutation] = useIncreaseEmployeeStarMutation();
-
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <span>test</span>
-    </main>
+    <BaseView className={'w-full bg-slate-800 items-center p-4'}>
+      <EmployeeTitle />
+      <EmployeeList />
+    </BaseView>
   );
 }

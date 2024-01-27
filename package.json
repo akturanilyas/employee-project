@@ -25,7 +25,8 @@
     "react-dom": "18.2.0",
     "qs": "6.11.2",
     "next": "14.1.0",
-    "react-redux": "8.1.0"
+    "react-redux": "8.1.0",
+    "next-redux-wrapper": "8.1.0"
   },
   "devDependencies": {
     "typescript": "5.3.3",

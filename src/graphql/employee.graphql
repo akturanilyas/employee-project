@@ -2,6 +2,11 @@ query employees {
     employees {
         id
         star
+        email
+        first_name
+        last_name
+        job
+        image
     }
 }
 
@@ -9,6 +14,11 @@ query employee($id: Int!) {
     employee(id: $id) {
         id
         star
+        email
+        first_name
+        last_name
+        job
+        image
     }
 }
 
