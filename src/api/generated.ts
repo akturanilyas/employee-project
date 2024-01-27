@@ -15,8 +15,21 @@ export type Scalars = {
   Float: { input: number; output: number };
 };
 
-export type Employee = {
-  __typename?: 'Employee';
+export type EmployeeDetail = {
+  __typename?: 'EmployeeDetail';
+  address: Scalars['String']['output'];
+  email: Scalars['String']['output'];
+  first_name: Scalars['String']['output'];
+  id: Scalars['Int']['output'];
+  image: Scalars['String']['output'];
+  job: Scalars['String']['output'];
+  last_name: Scalars['String']['output'];
+  phone: Scalars['String']['output'];
+  star: Scalars['Int']['output'];
+};
+
+export type EmployeeList = {
+  __typename?: 'EmployeeList';
   email: Scalars['String']['output'];
   first_name: Scalars['String']['output'];
   id: Scalars['Int']['output'];
@@ -28,7 +41,7 @@ export type Employee = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  increaseEmployeeStar: Employee;
+  increaseEmployeeStar: EmployeeDetail;
 };
 
 export type MutationIncreaseEmployeeStarArgs = {
@@ -37,8 +50,8 @@ export type MutationIncreaseEmployeeStarArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  employee: Employee;
-  employees?: Maybe<Array<Employee>>;
+  employee: EmployeeDetail;
+  employees?: Maybe<Array<EmployeeList>>;
 };
 
 export type QueryEmployeeArgs = {
@@ -50,7 +63,7 @@ export type EmployeesQueryVariables = Exact<{ [key: string]: never }>;
 export type EmployeesQuery = {
   __typename?: 'Query';
   employees?: Array<{
-    __typename?: 'Employee';
+    __typename?: 'EmployeeList';
     id: number;
     star: number;
     email: string;
@@ -68,7 +81,7 @@ export type EmployeeQueryVariables = Exact<{
 export type EmployeeQuery = {
   __typename?: 'Query';
   employee: {
-    __typename?: 'Employee';
+    __typename?: 'EmployeeDetail';
     id: number;
     star: number;
     email: string;
@@ -76,6 +89,8 @@ export type EmployeeQuery = {
     last_name: string;
     job: string;
     image: string;
+    address: string;
+    phone: string;
   };
 };
 
@@ -85,7 +100,7 @@ export type IncreaseEmployeeStarMutationVariables = Exact<{
 
 export type IncreaseEmployeeStarMutation = {
   __typename?: 'Mutation';
-  increaseEmployeeStar: { __typename?: 'Employee'; star: number; id: number };
+  increaseEmployeeStar: { __typename?: 'EmployeeDetail'; star: number; id: number };
 };
 
 export const EmployeesDocument = `
@@ -111,6 +126,8 @@ export const EmployeeDocument = `
     last_name
     job
     image
+    address
+    phone
   }
 }
     `;

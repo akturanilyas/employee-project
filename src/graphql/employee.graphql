@@ -19,6 +19,8 @@ query employee($id: Int!) {
         last_name
         job
         image
+        address
+        phone
     }
 }
 

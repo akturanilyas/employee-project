@@ -15,5 +15,5 @@ export const VoteEmployeeButton: FC<VoteEmployeeButtonProps> = (props) => {
     voteEmployee({ id: employeeId });
   };
 
-  return <Button label={'Vote'} onClick={onEmployeeVote} />;
+  return <Button className={'px-4 py-2 bg-green-400 rounded-md'} label={'Vote'} onClick={onEmployeeVote} />;
 };

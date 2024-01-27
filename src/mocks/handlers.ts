@@ -1,5 +1,5 @@
 import { graphql, HttpResponse } from 'msw';
-import { Employee, EmployeeQuery, EmployeesQuery } from '@/api/generated';
+import { EmployeeDetail, EmployeeQuery, EmployeesQuery } from '@/api/generated';
 
 const employeesMock = [
   {
@@ -11,6 +11,8 @@ const employeesMock = [
     image: 'https://robohash.org/sedetipsa.png?size=50x50&set=set1',
     job: 'Human Resources Assistant II',
     star: 9,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
   {
     id: 2,
@@ -21,6 +23,8 @@ const employeesMock = [
     image: 'https://robohash.org/quiautamet.png?size=50x50&set=set1',
     job: 'Assistant Manager',
     star: 2,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
   {
     id: 3,
@@ -31,6 +35,8 @@ const employeesMock = [
     image: 'https://robohash.org/teneturvoluptasaperiam.png?size=50x50&set=set1',
     job: 'Assistant Professor',
     star: 3,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
   {
     id: 4,
@@ -41,6 +47,8 @@ const employeesMock = [
     image: 'https://robohash.org/esseautvoluptas.png?size=50x50&set=set1',
     job: 'Safety Technician IV',
     star: 4,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
   {
     id: 5,
@@ -51,6 +59,8 @@ const employeesMock = [
     image: 'https://robohash.org/nonsintomnis.png?size=50x50&set=set1',
     job: 'VP Accounting',
     star: 5,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
   {
     id: 6,
@@ -61,6 +71,8 @@ const employeesMock = [
     image: 'https://robohash.org/sapienteliberoeligendi.png?size=50x50&set=set1',
     job: 'Director of Sales',
     star: 6,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
   {
     id: 7,
@@ -71,6 +83,8 @@ const employeesMock = [
     image: 'https://robohash.org/utevenietest.png?size=50x50&set=set1',
     job: 'Cost Accountant',
     star: 16,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
   {
     id: 8,
@@ -81,6 +95,8 @@ const employeesMock = [
     image: 'https://robohash.org/veniamenimquam.png?size=50x50&set=set1',
     job: 'Quality Control Specialist',
     star: 8,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
   {
     id: 9,
@@ -91,6 +107,8 @@ const employeesMock = [
     image: 'https://robohash.org/nemonesciuntvel.png?size=50x50&set=set1',
     job: 'Sales Associate',
     star: 9,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
   {
     id: 10,
@@ -101,6 +119,8 @@ const employeesMock = [
     image: 'https://robohash.org/doloribusnullavoluptates.png?size=50x50&set=set1',
     job: 'Account Representative III',
     star: 10,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
   {
     id: 11,
@@ -111,6 +131,8 @@ const employeesMock = [
     image: 'https://robohash.org/veronondoloremque.png?size=50x50&set=set1',
     job: 'Senior Quality Engineer',
     star: 11,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
   {
     id: 12,
@@ -121,6 +143,8 @@ const employeesMock = [
     image: 'https://robohash.org/adlaudantiumvoluptatem.png?size=50x50&set=set1',
     job: 'Sales Representative',
     star: 12,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
   {
     id: 13,
@@ -131,6 +155,8 @@ const employeesMock = [
     image: 'https://robohash.org/doloresomniseum.png?size=50x50&set=set1',
     job: 'Safety Technician I',
     star: 13,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
   {
     id: 14,
@@ -141,6 +167,8 @@ const employeesMock = [
     image: 'https://robohash.org/aliquidvelitblanditiis.png?size=50x50&set=set1',
     job: 'Human Resources Manager',
     star: 14,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
   {
     id: 15,
@@ -151,12 +179,14 @@ const employeesMock = [
     image: 'https://robohash.org/natusipsaaccusantium.png?size=50x50&set=set1',
     job: 'Staff Accountant II',
     star: 15,
+    address: '321 Pine Road, Somewhere, USA',
+    phone: '555-555-55-55',
   },
 ];
 
 export const handlers = [
   graphql.mutation<{
-    increaseEmployeeStar: Employee;
+    increaseEmployeeStar: EmployeeDetail;
   }>('increaseEmployeeStar', ({ variables }) => {
     const { id } = variables;
 
@@ -184,7 +214,7 @@ export const handlers = [
   graphql.query<EmployeeQuery>('employee', ({ variables }) => {
     const employeeId = variables.id;
 
-    const employee: Employee = employeesMock.find((employee) => employee.id === employeeId)!;
+    const employee: EmployeeDetail = employeesMock.find((employee) => employee.id === employeeId)!;
 
     return HttpResponse.json({
       data: {
