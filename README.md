@@ -1,22 +1,26 @@
-### Kurulumlar
-- Development ortamında ayağa kaldırmak için.
+### Installment
+
+- For development
 
 ```bash
-yarn dev
+yarn install && yarn dev
 ```
 
-- Production ortamında ayağa kaldırmak için.
+- For production.
 
 ```bash
-yarn build && yarn start
+yarn install && yarn build && yarn start
 ```
 
-- API olarak GraphQl Faker yüklenmesi ile ilgili [sorun](https://github.com/graphql-kit/graphql-faker/issues/196) olduğundan [msw](https://mswjs.io/) kullandım. Hem de test yazmamız gerektiğinde direkt olarak mocklardığımız datayı kullanabiliriz.
-- Loglama için her istek atıldığında `app.log` dosyasına log atılıyor. Kullanıcı aktiviteleri için Google Tag Manager de kullanılabilir.
-- Stillendirme için TailwindCSS kullandım.
-- State management olarak Redux kullandım. RTKQuery ile birlikte çok kullanışlı olduğundan dolayı kullandım.
-- GraphQL tarafında Shemalar oluşturulduktan sonra otomatik TypeScript type'ları oluşturulması için Codegen kullandım. Development ortamında aşağıdaki komut çalıştırılarak çalışılabilir.
+### Notes
+- Due to an [issue](https://github.com/graphql-kit/graphql-faker/issues/196) with installing GraphQl Faker for the API,
+  I used [msw](https://mswjs.io/). It allows us to directly use mocked data when we need to write tests.
+- Logging is done by logging each request to the `app.log` file. Google Tag Manager can be used for user activities.
+- TailwindCSS is used for styling.
+- Redux is used for state management. I chose it because it's very convenient with RTKQuery.
+- Codegen is used to automatically generate TypeScript types after creating schemas in GraphQL. It can be run in the
+  development environment with the following command:
+
 ```bash
 yarn run codegen:watch
 ```
-- Uygulama Vercel üzerinden deploy edilmiştir. Link'e GitHub üzerinden ulaşabilirsiniz. 
