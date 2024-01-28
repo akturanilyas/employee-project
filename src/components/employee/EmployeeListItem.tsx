@@ -28,7 +28,7 @@ export const EmployeeListItem: FC<EmployeeListItemProps> = (props) => {
                 <BaseText label={item.email} />
               </BaseView>
             </BaseView>
-            <BaseView className={'w-full items-center md:items-start md:pl-14'}>
+            <BaseView className={'w-full items-start lg:items-center pl-14 lg:p-0'}>
               <BaseText label={item.job} />
             </BaseView>
           </BaseView>
