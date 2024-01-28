@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { VoteEmployeeButton } from '@/components/employee/VoteEmployeeButton';
 import { EmployeeListItemProps } from '@/components/employee/EmployeeListItem.interface';
-import { BsStarFill } from 'react-icons/bs';
+import { EmployeeStar } from '@/components/employee/EmployeeStar';
 
 export const EmployeeListItem: FC<EmployeeListItemProps> = (props) => {
   const { item } = props;
@@ -34,10 +34,7 @@ export const EmployeeListItem: FC<EmployeeListItemProps> = (props) => {
               <BaseText label={item.job} />
             </BaseView>
           </BaseView>
-          <BaseView className={'flex flex-row items-center'}>
-            <BsStarFill className={'text-yellow-400'} />
-            <BaseText label={item.star.toString()} />
-          </BaseView>
+          <EmployeeStar count={item.star} />
         </BaseView>
         <VoteEmployeeButton className={'w-full lg:w-fit'} employeeId={item.id} />
       </BaseView>
