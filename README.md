@@ -20,4 +20,3 @@ yarn build && yarn start
 yarn run codegen:watch
 ```
 - Uygulama Vercel üzerinden deploy edilmiştir. Link'e GitHub üzerinden ulaşabilirsiniz. 
-- 
