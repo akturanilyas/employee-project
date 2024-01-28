@@ -5,6 +5,6 @@ import { TitleProps } from '@/components/common/title/Title.interface';
 
 export const Title: FC<TitleProps> = ({ label }) => (
   <BaseView className={'border rounded-md px-2 w-full shadow-md'}>
-    <BaseText label={label} className={'justify-center'} textClassName={'text-2xl'} />
+    <BaseText label={label} className={'justify-center'} textClassName={'text-2xl font-bold'} />
   </BaseView>
 );
