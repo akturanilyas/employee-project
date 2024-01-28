@@ -24,7 +24,7 @@ export default function RootLayout({
         <MockProvider>
           <ReduxProvider>
             <BaseView className={'items-center'}>
-              <BaseView className={'w-3/5'}>{children}</BaseView>
+              <BaseView className={'w-full lg:w-3/5'}>{children}</BaseView>
             </BaseView>
           </ReduxProvider>
         </MockProvider>

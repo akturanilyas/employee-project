@@ -14,7 +14,7 @@ export const EmployeeList: FC<EmployeeListProps> = (props) => {
   const getListItem = (item: EmployeeListType) => <EmployeeListItem item={item} />;
 
   return (
-    <BaseView className={'w-full items-center py-2 overflow-y-scroll h-[calc(100vh_-_10rem)]'}>
+    <BaseView className={'w-full items-center border rounded-md overflow-y-scroll h-[calc(100vh_-_10rem)]'}>
       <List<EmployeeListType>
         className={'w-full'}
         items={employeesData?.employees || []}
