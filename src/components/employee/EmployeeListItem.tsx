@@ -12,7 +12,9 @@ export const EmployeeListItem: FC<EmployeeListItemProps> = (props) => {
 
   return (
     <Link href={`/${item.id}`} className={'w-full'}>
-      <BaseView className={'flex md:flex-col lg:flex-row w-full items-center px-2 rounded-md justify-between'}>
+      <BaseView
+        className={'flex md:flex-col lg:flex-row w-full items-center px-2 rounded-md justify-between shadow-md'}
+      >
         <BaseView className={'flex-row w-full'}>
           <BaseView className={'lg:flex-row md:flex-col w-full justify-between items-center'}>
             <BaseView className={'flex-row w-full items-center align-middle'}>

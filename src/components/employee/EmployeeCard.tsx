@@ -17,7 +17,7 @@ export const EmployeeCard: FC<EmployeeCardProps> = (props) => {
   return (
     <>
       {employee && (
-        <BaseView className={'flex flex-row gap-2 h-full border w-full items-center justify-between'}>
+        <BaseView className={'flex flex-row gap-2 h-full border w-full items-center justify-between shadow-md'}>
           <BaseView className={'flex flex-col flex-1 sm:flex-row items-center'}>
             <BaseView className={'p-4'}>
               <BaseImage
