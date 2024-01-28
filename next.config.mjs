@@ -1,5 +1,3 @@
-import path from 'node:path';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
@@ -28,9 +26,6 @@ const nextConfig = {
     return config;
   },
   reactStrictMode: true,
-  sassOptions: {
-    includePaths: [path.join(import.meta.url, 'styles')],
-  },
   images: {
     domains: ['robohash.org'],
   },

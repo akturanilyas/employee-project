@@ -2,13 +2,16 @@
   "name": "employee-project",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.19.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --ext .js,.ts,.tsx",
     "lint:fix": "cd \"./src/\" && eslint . --fix --ext .ts,.tsx,.js && cd ..",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "test": "echo \"Write tests!",
     "tsc": "tsc",
     "tsc:watch": "tsc --watch",
     "format": "prettier --write \"./src/**/*.{ts,tsx,js,jsx,json}\"",
@@ -28,7 +31,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "8.1.0",
-    "winston": "^3.11.0"
+    "winston": "3.11.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.0",
@@ -41,7 +44,7 @@
     "@types/qs": "6.9.11",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
-    "@types/redux-logger": "3.0.9",
+    "@types/redux-logger": "3.0.13",
     "@typescript-eslint/eslint-plugin": "6.19.1",
     "@typescript-eslint/parser": "6.19.1",
     "autoprefixer": "10.4.17",
